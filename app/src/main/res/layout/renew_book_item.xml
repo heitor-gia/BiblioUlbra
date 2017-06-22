@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvDeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textSize="15sp"
+        android:text="23/04/05"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/tvBookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="15sp"
+        android:text="Nome do livro em questão"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@id/tvDeadline"
+        android:layout_alignParentLeft="true" />
+
+
+
+</RelativeLayout>

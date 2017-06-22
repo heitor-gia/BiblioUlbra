@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navHome"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/navHistory"
+            android:icon="@drawable/ic_history"
+            android:title="Histórico" />
+        <item
+            android:id="@+id/navLoans"
+            android:icon="@drawable/ic_book_open_page_variant"
+            android:title="Emprestimos" />
+
+        <item
+            android:id="@+id/navAdvancedSearch"
+            android:icon="@drawable/ic_magnify"
+            android:title="Pesquisar" />
+    </group>
+
+    <group>
+            <!-- To be implemented -->
+            <!--<item
+                android:id="@+id/navSettings"
+                android:icon="@drawable/ic_settings"
+                android:title="Configurações" />-->
+            <item
+                android:id="@+id/navLogout"
+                android:icon="@drawable/ic_logout_variant"
+                android:title="Sair" />
+    </group>
+
+</menu>

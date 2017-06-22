@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/BiblioUlbraV2.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/BiblioUlbraV2.iml" />
+      <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" />
+      <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" />
+      <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/data/data.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/data/data.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:animateLayoutChanges="true">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bookList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnToggleSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end|right"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:fabSize="normal"
+        app:layout_anchor="@id/bookList"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior="com.hgianastasio.biblioulbrav2.views.behaviors.FABHideOnScrollBehavior"
+        app:srcCompat="@drawable/ic_magnify" />
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        android:animateLayoutChanges="true">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            theme="@style/AppTheme.TextInputLayout.Accent">
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pesquisar"
+                android:textColor="@android:color/white"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            style="@style/AppTheme.Widget.Button.Accent"/>
+        <RelativeLayout
+            android:id="@+id/btnToggleAdvancedSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/ivArrowDown"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_arrow_down"
+                android:tint="@color/colorAccent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/tvAdvancedSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ivArrowDown"
+                android:text="Pesquisa avançada"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorAccent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_toLeftOf="@id/tvAdvancedSearch"
+                android:layout_centerVertical="true"
+                android:background="@color/colorAccent"
+                />
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/vwAdvancedSearchLayout"
+            layout="@layout/form_advanced_search_layout"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/progress_layout"/>
+
+</android.support.design.widget.CoordinatorLayout>
