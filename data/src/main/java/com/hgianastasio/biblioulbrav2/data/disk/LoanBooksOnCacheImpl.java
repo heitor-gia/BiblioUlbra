@@ -77,7 +77,7 @@ public class LoanBooksOnCacheImpl implements LoanBooksOnCache {
             dbHelper
                     .getWritableDatabase()
                     .execSQL(String.format("DELETE FROM %s", HISTORY_CACHE_TABLENAME));
-            return true;
+            return preferences.clear();
         } catch (SQLException e) {
             return false;
         }
@@ -124,6 +124,10 @@ public class LoanBooksOnCacheImpl implements LoanBooksOnCache {
         long getUpdateTime(){
             return getPreferences()
                     .getLong(LOAN_BOOKS_UPDATE_TIME_KEY,-1);
+        }
+
+        boolean clear(){
+            return getPreferences().edit().remove(LOAN_BOOKS_UPDATE_TIME_KEY).commit();
         }
     }
 }

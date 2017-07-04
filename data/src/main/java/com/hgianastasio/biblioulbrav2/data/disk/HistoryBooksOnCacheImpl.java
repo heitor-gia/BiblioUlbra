@@ -76,7 +76,8 @@ public class HistoryBooksOnCacheImpl implements HistoryBooksOnCache {
             dbHelper
                 .getWritableDatabase()
                 .execSQL(String.format("DELETE FROM %s",HISTORY_CACHE_TABLENAME));
-            return true;
+
+            return preferences.clear();
         }catch (SQLException e){
             return false;
         }
@@ -123,6 +124,10 @@ public class HistoryBooksOnCacheImpl implements HistoryBooksOnCache {
         long getUpdateTime(){
             return getPreferences()
                     .getLong(HISTORY_BOOKS_UPDATE_TIME_KEY,-1);
+        }
+
+        boolean clear(){
+            return getPreferences().edit().remove(HISTORY_BOOKS_UPDATE_TIME_KEY).commit();
         }
     }
 }
