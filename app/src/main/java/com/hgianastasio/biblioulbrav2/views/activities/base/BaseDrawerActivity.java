@@ -53,7 +53,7 @@ public abstract class BaseDrawerActivity extends BaseFragmentActivity implements
         toggle.syncState();
     }
 
-    protected void configureDrawer(UserModel model){
+    public void configureDrawer(UserModel model){
         ((TextView)navigationDrawer.getHeaderView(0).findViewById(R.id.tvName)).setText(model.getName());
         ((TextView)navigationDrawer.getHeaderView(0).findViewById(R.id.tvCGU)).setText(model.getCgu());
     }

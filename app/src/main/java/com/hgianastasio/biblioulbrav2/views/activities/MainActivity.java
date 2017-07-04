@@ -3,6 +3,7 @@ package com.hgianastasio.biblioulbrav2.views.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -29,11 +30,11 @@ import butterknife.BindView;
  * Created by heitor_12 on 09/05/17.
  */
 
-public class MainActivity extends BaseDrawerActivity {
+public class MainActivity extends BaseDrawerActivity implements HomeFragment.OnCardClickListener {
     @Inject
-    protected UserModelPresenter userModelPresenter;
+    UserModelPresenter userModelPresenter;
     @Inject
-    protected LoadCachePresenter loadCachePresenter;
+    LoadCachePresenter loadCachePresenter;
 
     @BindView(R.id.mainProgress)
     ProgressBar mainProgress;
@@ -58,7 +59,7 @@ public class MainActivity extends BaseDrawerActivity {
                 }
         );
         loadCachePresenter.loadCache();
-        callFragment(new HomeFragment());
+        callFragment(HomeFragment.createInstance(this));
     }
 
     @Override
@@ -89,7 +90,7 @@ public class MainActivity extends BaseDrawerActivity {
                 callFragment(new LoanBooksListFragment());
                 break;
             case R.id.navHome:
-                callFragment(new HomeFragment());
+                callFragment(HomeFragment.createInstance(this));
                 break;
             case R.id.navAdvancedSearch:
                 callFragment(new SearchFragment());
@@ -115,8 +116,13 @@ public class MainActivity extends BaseDrawerActivity {
     @Override
     public void onBackPressed() {
         if(!(currentFragment instanceof HomeFragment))
-            callFragment(new HomeFragment());
+            callFragment(HomeFragment.createInstance(this));
         else
             super.onBackPressed();
+    }
+
+    @Override
+    public void onCardClick(int id) {
+       onNavigationItemSelected(navigationDrawer.getMenu().findItem(id));
     }
 }

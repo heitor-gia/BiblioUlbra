@@ -27,6 +27,7 @@ public abstract class BaseFragmentActivity extends BaseActivity {
         currentFragment = fragment;
         getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_bottom,R.anim.exit_to_bottom)
                 .replace(getFragmentContainerId(), fragment, fragment.getFragTag())
                 .commit();
 

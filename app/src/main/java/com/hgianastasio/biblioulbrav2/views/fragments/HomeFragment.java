@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.widget.TextView;
 
 import com.hgianastasio.biblioulbrav2.R;
@@ -16,6 +17,7 @@ import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by heitor_12 on 11/05/17.
@@ -36,6 +38,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     FloatingActionButton btnRenewLoans;
     @BindView(R.id.refreshLayout)
     SwipeRefreshLayout refreshLayout;
+    OnCardClickListener onCardClickListener;
 
     @Inject
     UserModelPresenter presenter;
@@ -91,8 +94,27 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     @Override
     public void onDestroyView() {
         presenter.unsetProgressListener();
+        onCardClickListener = null;
         super.onDestroyView();
     }
+
+    @OnClick({R.id.loansCard,R.id.historyCard})
+    public void cardClick(View view){
+        if(onCardClickListener!=null)
+        switch (view.getId()){
+            case R.id.loansCard:
+                onCardClickListener.onCardClick(R.id.navLoans);
+                break;
+            case R.id.historyCard:
+                onCardClickListener.onCardClick(R.id.navHistory);
+                break;
+        }
+    }
+
+    public void setOnCardClickListener(OnCardClickListener onCardClickListener) {
+        this.onCardClickListener = onCardClickListener;
+    }
+
 
     @Override
     public void showProgress() {
@@ -113,4 +135,15 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     public void hideRetry() {
 
     }
+
+    public static HomeFragment createInstance(OnCardClickListener listener){
+        HomeFragment fragment = new HomeFragment();
+        fragment.setOnCardClickListener(listener);
+        return fragment;
+    }
+
+    public interface OnCardClickListener{
+        void onCardClick(int id);
+    }
+
 }

@@ -11,6 +11,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="25dp">
 
@@ -125,6 +126,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/bookingCard"
                 android:padding="4dp">
 
                 <TextView
@@ -164,7 +166,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="4dp">
+                android:padding="4dp"
+                android:id="@+id/loansCard">
 
                 <TextView
                     android:id="@+id/tvLoans"
@@ -211,6 +214,7 @@
             app:layout_constraintVertical_bias="0.0">
 
             <RelativeLayout
+                android:id="@+id/debtCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="4dp">
@@ -255,6 +259,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/historyCard"
                 android:padding="4dp">
 
                 <TextView
