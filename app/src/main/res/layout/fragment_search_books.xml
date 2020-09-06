@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,13 @@
     android:background="@android:color/white"
     android:animateLayoutChanges="true">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnToggleSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:background="@color/colorPrimary"
         android:padding="16dp"
         android:animateLayoutChanges="true">
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             theme="@style/AppTheme.TextInputLayout.Accent">
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Pesquisar"
                 android:textColor="@android:color/white"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="match_parent"
@@ -100,4 +100,4 @@
 
     <include layout="@layout/progress_layout"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

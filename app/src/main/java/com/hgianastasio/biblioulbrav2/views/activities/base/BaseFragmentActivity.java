@@ -1,8 +1,7 @@
 package com.hgianastasio.biblioulbrav2.views.activities.base;
 
-import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.IdRes;
+import androidx.fragment.app.Fragment;
 
 import com.hgianastasio.biblioulbrav2.R;
 import com.hgianastasio.biblioulbrav2.views.fragments.BaseFragment;

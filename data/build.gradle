@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
@@ -14,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
     }
 
@@ -28,16 +27,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     //compile files("/core/build/libs/core.jar")
 
     implementation project(':core')
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
-    api 'com.squareup.okhttp3:okhttp:3.3.1'
-    api 'com.squareup.retrofit2:retrofit:2.2.0'
-    testImplementation 'junit:junit:4.12'
+    api 'com.squareup.okhttp3:okhttp:3.14.9'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.8.1"
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    testImplementation 'junit:junit:4.13'
 }

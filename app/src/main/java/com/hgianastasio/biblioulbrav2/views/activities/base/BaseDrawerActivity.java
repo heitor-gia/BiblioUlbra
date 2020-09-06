@@ -1,20 +1,15 @@
 package com.hgianastasio.biblioulbrav2.views.activities.base;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import androidx.annotation.Nullable;
+import com.google.android.material.navigation.NavigationView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hgianastasio.biblioulbrav2.R;
 import com.hgianastasio.biblioulbrav2.models.user.UserModel;
-import com.hgianastasio.biblioulbrav2.navigation.Navigator;
-import com.hgianastasio.biblioulbrav2.presenters.UserModelPresenter;
 import com.hgianastasio.biblioulbrav2.views.fragments.BaseFragment;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,11 +19,11 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseDrawerActivity extends BaseFragmentActivity implements NavigationView.OnNavigationItemSelectedListener {
+    @BindView(R.id.nav_view)
     protected NavigationView navigationDrawer;
 
     @BindView(R.id.drawer_layout)
     protected DrawerLayout drawer;
-
 
 
     @Override
@@ -38,14 +33,11 @@ public abstract class BaseDrawerActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        navigationDrawer = ButterKnife.findById(drawer,R.id.nav_view);
+    protected void postBind() {
+        super.postBind();
         navigationDrawer.setNavigationItemSelectedListener(this);
         createDrawerToggle();
     }
-
-
 
     protected void createDrawerToggle(){
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,0,0);

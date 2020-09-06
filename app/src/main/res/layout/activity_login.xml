@@ -9,12 +9,12 @@
     android:animateLayoutChanges="true">
 
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title=" ">
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,22 +31,21 @@
             android:text="Login"
             android:visibility="invisible"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiCgu"
-            android:theme="@style/AppTheme.TextInputLayout.Accent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnLogin"
             android:visibility="invisible">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCgu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="CGU"
                 android:textColor="@color/colorAccent"
                 android:inputType="number" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <ImageView
