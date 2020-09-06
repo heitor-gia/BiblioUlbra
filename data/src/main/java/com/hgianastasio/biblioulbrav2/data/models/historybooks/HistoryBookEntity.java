@@ -1,27 +1,25 @@
 package com.hgianastasio.biblioulbrav2.data.models.historybooks;
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Created by heitorgianastasio on 4/24/17.
  */
-@JsonObject
 public class HistoryBookEntity {
-
 
     private long id;
 
-    @JsonField(name = "titulo")
+    @SerializedName("titulo")
     private String title;
 
-    @JsonField(name = "agendado")
+    @SerializedName("agendado")
     private String deadline;
 
-    @JsonField(name = "devolvido")
+    @SerializedName("devolvido")
     private String devolution;
 
-    @JsonField(name = "biblioteca")
+    @SerializedName("biblioteca")
     private String library;
 
 

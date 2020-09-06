@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.bluelinelabs.logansquare.LoganSquare;
+import com.google.gson.Gson;
 import com.hgianastasio.biblioulbrav2.data.base.loanbooks.LoanBooksOnCache;
 import com.hgianastasio.biblioulbrav2.data.disk.db.DBHelper;
 import com.hgianastasio.biblioulbrav2.data.disk.preferences.BasePreferences;
@@ -94,14 +94,14 @@ public class LoanBooksOnCacheImpl implements LoanBooksOnCache {
     private LoanBookEntity fromCursor(Cursor cursor) throws IOException {
         int idFieldIndex = cursor.getColumnIndex(HISTORY_CACHE_IDFIELD);
         int jsonFieldIndex = cursor.getColumnIndex(HISTORY_CACHE_JSONFIELD);
-        LoanBookEntity entity = LoganSquare.parse(cursor.getString(jsonFieldIndex), LoanBookEntity.class);
+        LoanBookEntity entity = new Gson().fromJson(cursor.getString(jsonFieldIndex), LoanBookEntity.class);
         entity.setId(cursor.getLong(idFieldIndex));
         return entity;
     }
 
     private ContentValues toValues(LoanBookEntity entity) throws IOException {
         ContentValues result = new ContentValues();
-        result.put(HISTORY_CACHE_JSONFIELD, LoganSquare.serialize(entity));
+        result.put(HISTORY_CACHE_JSONFIELD, new Gson().toJson(entity));
         return result;
     }
 

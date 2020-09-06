@@ -1,7 +1,7 @@
 package com.hgianastasio.biblioulbrav2.data.models.search.searchresult;
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+
+import com.google.gson.annotations.SerializedName;
 import com.hgianastasio.biblioulbrav2.data.models.search.searchbook.SearchBookEntity;
 
 import java.util.ArrayList;
@@ -9,24 +9,23 @@ import java.util.ArrayList;
 /**
  * Created by heitor_12 on 23/11/16.
  */
-@JsonObject
 public class SearchResultEntity {
 
-    @JsonField(name = "resultados")
+    @SerializedName("resultados")
     private ArrayList<SearchBookEntity> result;
 
-    @JsonField
+    @SerializedName("itens")
     private int itens;
 
-    @JsonField(name = "paginas")
+    @SerializedName("paginas")
     private int pages;
 
-    @JsonField(name = "pagina")
+    @SerializedName("pagina")
     private int currentPage;
 
-    @JsonField
+    @SerializedName("cookie")
     private String cookie;
-    @JsonField
+    @SerializedName("scalar")
     private String scalar;
 
 

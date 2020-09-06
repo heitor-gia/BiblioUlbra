@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BiblioUlbra.iml" filepath="$PROJECT_DIR$/.idea/modules/BiblioUlbra.iml" group="BiblioUlbra" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BiblioUlbra-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BiblioUlbra-app.iml" group="BiblioUlbra/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/BiblioUlbra-core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/BiblioUlbra-core.iml" group="BiblioUlbra/core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/BiblioUlbra-data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/BiblioUlbra-data.iml" group="BiblioUlbra/data" />
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/BiblioUlbraV2.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/BiblioUlbraV2.iml" />
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" />
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" />

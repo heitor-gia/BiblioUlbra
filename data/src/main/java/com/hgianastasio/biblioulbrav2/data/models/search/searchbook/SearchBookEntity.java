@@ -1,27 +1,26 @@
 package com.hgianastasio.biblioulbrav2.data.models.search.searchbook;
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Created by heitorgianastasio on 4/24/17.
  */
-@JsonObject
 public class SearchBookEntity {
 
-    @JsonField(name = "titulo")
+    @SerializedName("titulo")
     private String title;
 
-    @JsonField(name = "numero")
+    @SerializedName("numero")
     private String number;
 
-    @JsonField(name = "autor")
+    @SerializedName("autor")
     private String author;
 
-    @JsonField(name = "ano")
+    @SerializedName("ano")
     private String year;
 
-    @JsonField(name = "exsemprestados")
+    @SerializedName("exsemprestados")
     private String catchedExps;
 
     public String getTitle() {

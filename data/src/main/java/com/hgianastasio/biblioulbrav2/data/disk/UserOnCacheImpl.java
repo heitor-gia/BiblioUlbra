@@ -3,7 +3,7 @@ package com.hgianastasio.biblioulbrav2.data.disk;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bluelinelabs.logansquare.LoganSquare;
+import com.google.gson.Gson;
 import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCache;
 import com.hgianastasio.biblioulbrav2.data.disk.preferences.BasePreferences;
 import com.hgianastasio.biblioulbrav2.data.models.user.UserEntity;
@@ -27,18 +27,18 @@ public class UserOnCacheImpl extends BasePreferences implements UserOnCache{
 
     public UserEntity get() throws IOException {
         String json = getPreferences().getString(USER_DATA_PREFERENCE_KEY,"");
-        return LoganSquare.parse(json,UserEntity.class);
+        return new Gson().fromJson(json,UserEntity.class);
     }
 
     public boolean save(UserEntity user){
         SharedPreferences.Editor editor = getPreferences().edit();
         try {
-            String userJson = LoganSquare.serialize(user);
+            String userJson = new Gson().toJson(user);
             editor
                 .putString(USER_DATA_PREFERENCE_KEY,userJson)
                 .putLong(USER_TIME_PREFERENCE_KEY,System.currentTimeMillis())
                 .apply();
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
             return false;
         }

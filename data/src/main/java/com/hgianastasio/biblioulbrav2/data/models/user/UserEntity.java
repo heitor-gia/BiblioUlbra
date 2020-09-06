@@ -1,31 +1,30 @@
 package com.hgianastasio.biblioulbrav2.data.models.user;
 
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Created by heitor_12 on 02/09/16.
  */
-@JsonObject
 public class UserEntity {
 
-    @JsonField(name = "usuario")
+    @SerializedName("usuario")
     private String name;
 
-    @JsonField
+    @SerializedName("cgu")
     private String cgu;
 
-    @JsonField(name = "emprestimos")
+    @SerializedName("emprestimos")
     private String loans;
 
-    @JsonField(name = "historico")
+    @SerializedName("historico")
     private String history;
 
-    @JsonField(name = "reservas")
+    @SerializedName("reservas")
     private String bookings;
 
-    @JsonField(name = "caixa")
+    @SerializedName("caixa")
     private String debt;
 
 

@@ -1,8 +1,6 @@
 package com.hgianastasio.biblioulbrav2.data.network.cloud;
 
-import com.github.aurae.retrofit2.LoganSquareConverterFactory;
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.OnResultListener;
-import com.hgianastasio.biblioulbrav2.core.search.models.SearchResult;
 import com.hgianastasio.biblioulbrav2.data.base.search.SearchBooksOnCloud;
 import com.hgianastasio.biblioulbrav2.data.models.search.searchmodel.SearchModelEntity;
 import com.hgianastasio.biblioulbrav2.data.models.search.searchresult.SearchResultEntity;

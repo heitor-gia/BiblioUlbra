@@ -1,18 +1,17 @@
 package com.hgianastasio.biblioulbrav2.data.models.user.renew;
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonIgnore;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-@JsonObject
 public class RenewLoansResponseEntity {
-    @JsonField(name = "renovado")
+    @SerializedName("renovado")
     private String status;
 
-    @JsonField(name = "razao")
+    @SerializedName("razao")
     private String message;
 
     public RenewLoansResponseEntity() {

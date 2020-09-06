@@ -1,31 +1,30 @@
 package com.hgianastasio.biblioulbrav2.data.models.loanbooks;
 
-import com.bluelinelabs.logansquare.annotation.JsonField;
-import com.bluelinelabs.logansquare.annotation.JsonObject;
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Created by heitorgianastasio on 4/24/17.
  */
-@JsonObject
 public class LoanBookEntity {
     private long id;
 
-    @JsonField(name = "titulo")
+    @SerializedName("titulo")
     private String title;
 
-    @JsonField(name = "agendado")
+    @SerializedName("agendado")
     private String deadline;
 
-    @JsonField(name = "taxa")
+    @SerializedName("taxa")
     private String penalty;
 
-    @JsonField(name = "biblioteca")
+    @SerializedName("biblioteca")
     private String library;
 
-    @JsonField(name = "chamada")
+    @SerializedName("chamada")
     private String code;
 
-    @JsonField(name = "descricao")
+    @SerializedName("descricao")
     private String description;
 
 
