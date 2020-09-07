@@ -2,49 +2,34 @@ package com.hgianastasio.biblioulbrav2.views.activities
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import butterknife.BindView
-import com.google.android.material.textfield.TextInputLayout
-import com.hgianastasio.biblioulbrav2.R
+import androidx.appcompat.widget.Toolbar
+import com.hgianastasio.biblioulbrav2.databinding.ActivityLoginBinding
 import com.hgianastasio.biblioulbrav2.models.user.UserModel
 import com.hgianastasio.biblioulbrav2.navigation.Navigator
 import com.hgianastasio.biblioulbrav2.presenters.UserModelPresenter
 import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
+import com.hgianastasio.biblioulbrav2.views.viewBinding
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(), OnProgressListener {
-    @kotlin.jvm.JvmField
-    @BindView(R.id.btnLogin)
-    var btnLogin: Button? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.etCgu)
-    var etCgu: EditText? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.tiCgu)
-    var tiCGU: TextInputLayout? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.progress)
-    var progress: View? = null
+    val binding by viewBinding(ActivityLoginBinding::inflate)
 
     @kotlin.jvm.JvmField
     @Inject
     var presenter: UserModelPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         activityComponent.inject(this)
         presenter!!.getUser({ model: UserModel? -> processUserModelResult(model) }, {  showLoginForm() })
-        btnLogin!!.setOnClickListener { v: View? ->
-            if (etCgu!!.text.toString().isEmpty()) {
+        binding.btnLogin.setOnClickListener { v: View? ->
+            if (binding.etCgu.text.toString().isEmpty()) {
                 Toast.makeText(this, "Preencha o campo com seu CGU", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            presenter!!.login(etCgu!!.text.toString(),
+            presenter!!.login(binding.etCgu.text.toString(),
                     {
                         Navigator.toHomeActivity(this)
                         finish()
@@ -59,10 +44,8 @@ class LoginActivity : BaseActivity(), OnProgressListener {
         presenter?.progressListener = this
     }
 
-    override fun preBind() {
-        super.preBind()
-        setContentView(R.layout.activity_login)
-    }
+    override val toolbar: Toolbar?
+        get() = binding.toolbar
 
     private fun processUserModelResult(model: UserModel?) {
         if (model != null) {
@@ -73,9 +56,9 @@ class LoginActivity : BaseActivity(), OnProgressListener {
         }
     }
 
-    private fun showLoginForm() {
-        btnLogin!!.visibility = View.VISIBLE
-        tiCGU!!.visibility = View.VISIBLE
+    private fun showLoginForm() = binding.run {
+        btnLogin.visibility = View.VISIBLE
+        tiCgu.visibility = View.VISIBLE
     }
 
     override fun onPause() {
@@ -84,11 +67,11 @@ class LoginActivity : BaseActivity(), OnProgressListener {
     }
 
     override fun showProgress() {
-        progress!!.visibility = View.VISIBLE
+        binding.progress.root.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        progress!!.visibility = View.INVISIBLE
+        binding.progress.root.visibility = View.INVISIBLE
     }
 
     override fun showRetry() {}

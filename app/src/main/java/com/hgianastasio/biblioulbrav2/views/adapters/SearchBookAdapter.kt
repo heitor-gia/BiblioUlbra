@@ -4,12 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.hgianastasio.biblioulbrav2.R
+import com.hgianastasio.biblioulbrav2.databinding.SearchBookItemBinding
 import com.hgianastasio.biblioulbrav2.models.search.searchbook.SearchBookModel
 
 /**
@@ -29,11 +26,11 @@ class SearchBookAdapter(private val list: List<SearchBookModel?>, private val mC
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
-        holder.tvBookTitle?.text = model?.title
-        holder.tvAuthorName!!.text = String.format("Autor: %s", model?.author)
-        holder.tvBookYear!!.text = String.format("Ano: %s", model?.year)
-        holder.tvBookNumber!!.text = String.format("#%d", model?.number)
-        if (onItemClickListener != null) holder.root!!.setOnClickListener { onItemClickListener!!.onItemClick(model) }
+        holder.binding.tvBookTitle.text = model?.title
+        holder.binding.tvAuthorName.text = String.format("Autor: %s", model?.author)
+        holder.binding.tvBookYear.text = String.format("Ano: %s", model?.year)
+        holder.binding.tvBookNumber.text = String.format("#%d", model?.number)
+        holder.binding.root.setOnClickListener { onItemClickListener?.onItemClick(model) }
     }
 
     override fun getItemCount(): Int {
@@ -44,30 +41,8 @@ class SearchBookAdapter(private val list: List<SearchBookModel?>, private val mC
         this.onItemClickListener = onItemClickListener
     }
 
-    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookTitle)
-        var tvBookTitle: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvAuthorName)
-        var tvAuthorName: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookYear)
-        var tvBookYear: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookNumber)
-        var tvBookNumber: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.rlRoot)
-        var root: RelativeLayout? = null
-
-        init {
-            ButterKnife.bind(this, itemView!!)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+       val binding = SearchBookItemBinding.bind(itemView)
     }
 
 }

@@ -4,12 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.hgianastasio.biblioulbrav2.R
+import com.hgianastasio.biblioulbrav2.databinding.LoanBookItemBinding
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 
 /**
@@ -29,10 +26,10 @@ class LoanBookAdapter(private val list: List<LoanBookModel?>, private val mConte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
-        holder.tvBookTitle!!.text = model?.title
-        holder.tvDeadline!!.text = String.format("Prazo: %s", model?.deadline)
-        holder.tvBookPenalty!!.text = String.format("Multa: R$%s", model?.penalty)
-        if (onItemClickListener != null) holder.root!!.setOnClickListener {  onItemClickListener!!.onItemClick(model) }
+        holder.binding.tvBookTitle.text = model?.title
+        holder.binding.tvDeadline.text = String.format("Prazo: %s", model?.deadline)
+        holder.binding.tvBookPenalty.text = String.format("Multa: R$%s", model?.penalty)
+        holder.binding.root.setOnClickListener {  onItemClickListener?.onItemClick(model) }
     }
 
     override fun getItemCount(): Int {
@@ -43,26 +40,8 @@ class LoanBookAdapter(private val list: List<LoanBookModel?>, private val mConte
         this.onItemClickListener = onItemClickListener
     }
 
-    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookTitle)
-        var tvBookTitle: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvDeadline)
-        var tvDeadline: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookPenalty)
-        var tvBookPenalty: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.rlRoot)
-        var root: RelativeLayout? = null
-
-        init {
-            ButterKnife.bind(this, itemView!!)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val binding = LoanBookItemBinding.bind(itemView)
     }
 
 }

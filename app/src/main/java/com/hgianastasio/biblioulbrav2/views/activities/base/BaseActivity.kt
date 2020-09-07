@@ -12,8 +12,8 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import butterknife.BindView
-import butterknife.ButterKnife
+
+
 import com.hgianastasio.biblioulbrav2.R
 import com.hgianastasio.biblioulbrav2.di.DaggerApplicationInjector
 import com.hgianastasio.biblioulbrav2.di.components.ActivityComponent
@@ -24,13 +24,12 @@ import com.hgianastasio.biblioulbrav2.di.modules.ActivityModule
  * Created by heitorgianastasio on 11/29/16.
  */
 abstract class BaseActivity : AppCompatActivity() {
-    @kotlin.jvm.JvmField
-    @BindView(R.id.toolbar)
-    var toolbar: Toolbar? = null
+
+    abstract val toolbar: Toolbar?
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preBind()
-        ButterKnife.bind(this)
         postBind()
     }
 

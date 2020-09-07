@@ -4,12 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.hgianastasio.biblioulbrav2.R
+import com.hgianastasio.biblioulbrav2.databinding.RenewBookItemBinding
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 
 /**
@@ -23,29 +21,19 @@ class RenewLoanBookAdapter(private val list: List<LoanBookModel?>, private val m
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
-        holder.tvBookTitle?.text = model?.title
-        holder.tvDeadline?.text = model?.deadline + if (model!!.isSingleCopy) "*" else ""
+        holder.binding.tvBookTitle.text = model?.title
+        holder.binding.tvDeadline.text = model?.deadline + if (model!!.isSingleCopy) "*" else ""
         val color: Int
         color = if (model.isOverdue) R.color.redPenalty else if (model.wasJustRenewed()) R.color.yellowWarning else R.color.greenPenalty
-        holder.tvDeadline!!.setTextColor(ContextCompat.getColor(mContext!!, color))
+        holder.binding.tvDeadline.setTextColor(ContextCompat.getColor(mContext!!, color))
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookTitle)
-        var tvBookTitle: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvDeadline)
-        var tvDeadline: TextView? = null
-
-        init {
-            ButterKnife.bind(this, itemView!!)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val binding = RenewBookItemBinding.bind(itemView)
     }
 
 }

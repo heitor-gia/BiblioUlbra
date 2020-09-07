@@ -65,7 +65,7 @@
 				android:textSize="24sp" />
 		</RelativeLayout>
 
-		<include layout="@layout/progress_layout" />
+		<include layout="@layout/progress_layout" android:id="@+id/progress"/>
 
 
 	</RelativeLayout>

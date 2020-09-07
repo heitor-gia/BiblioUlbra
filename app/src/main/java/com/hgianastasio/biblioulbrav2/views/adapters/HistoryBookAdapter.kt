@@ -4,11 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.hgianastasio.biblioulbrav2.R
+import com.hgianastasio.biblioulbrav2.databinding.HistoryBookItemBinding
 import com.hgianastasio.biblioulbrav2.models.historybooks.HistoryBookModel
 
 /**
@@ -22,36 +20,18 @@ class HistoryBookAdapter(private val list: List<HistoryBookModel?>, private val 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
-        holder.tvBookTitle!!.text = model?.title
-        holder.tvDeadline!!.text = String.format("Prazo: %s", model?.deadline)
-        holder.tvDevolution!!.text = String.format("Devolução: %s", model?.devolution)
-        holder.tvLibrary!!.text = String.format("Biblioteca: %s", model?.library)
+        holder.binding.tvBookTitle.text = model?.title
+        holder.binding.tvDeadline.text = String.format("Prazo: %s", model?.deadline)
+        holder.binding.tvDevolution.text = String.format("Devolução: %s", model?.devolution)
+        holder.binding.tvLibrary.text = String.format("Biblioteca: %s", model?.library)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvBookTitle)
-        var tvBookTitle: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvDeadline)
-        var tvDeadline: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvDevolution)
-        var tvDevolution: TextView? = null
-
-        @kotlin.jvm.JvmField
-        @BindView(R.id.tvLibrary)
-        var tvLibrary: TextView? = null
-
-        init {
-            ButterKnife.bind(this, itemView!!)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val binding = HistoryBookItemBinding.bind(itemView)
     }
 
 }

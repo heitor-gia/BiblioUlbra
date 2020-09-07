@@ -3,17 +3,16 @@ package com.hgianastasio.biblioulbrav2.views.activities
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
-import butterknife.BindView
-import com.hgianastasio.biblioulbrav2.R
+import com.hgianastasio.biblioulbrav2.databinding.ActivitySimpleBooksBinding
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 import com.hgianastasio.biblioulbrav2.presenters.LoanBooksListPresenter
 import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.LoanBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
+import com.hgianastasio.biblioulbrav2.views.viewBinding
 import java.util.*
 import javax.inject.Inject
 
@@ -21,21 +20,7 @@ import javax.inject.Inject
  * Created by heitor_12 on 09/05/17.
  */
 class LoanBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListener {
-    @kotlin.jvm.JvmField
-    @BindView(R.id.progress)
-    var progress: View? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.noBooksFound)
-    var noBooksView: View? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.bookList)
-    var rvLoanBooks: RecyclerView? = null
-
-    @kotlin.jvm.JvmField
-    @BindView(R.id.refreshLayout)
-    var refreshLayout: SwipeRefreshLayout? = null
+    val binding by viewBinding (ActivitySimpleBooksBinding::inflate)
     var adapter: LoanBookAdapter? = null
     var bookModelList: MutableList<LoanBookModel?> = ArrayList()
 
@@ -47,28 +32,32 @@ class LoanBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListe
     override fun preBind() {
         super.preBind()
         activityComponent.inject(this)
-        setContentView(R.layout.activity_simple_books)
+        setContentView(binding.root)
     }
 
     override fun postBind() {
         super.postBind()
         presenter!!.progressListener = this
         supportActionBar?.title = "Livros Alugados"
-        refreshLayout!!.setOnRefreshListener(this)
-        rvLoanBooks!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.refreshLayout.setOnRefreshListener(this)
+        binding.bookList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapter = LoanBookAdapter(bookModelList, this)
         adapter!!.setOnItemClickListener(object : LoanBookAdapter.OnItemClickListener {
             override fun onItemClick(loanBookModel: LoanBookModel?) = createLoanBookDialog(loanBookModel!!)
         })
-        rvLoanBooks!!.adapter = adapter
+        binding.bookList.adapter = adapter
         presenter!!.getLoanBooks(
                 { list: List<LoanBookModel?> -> renderLoanBookList(list) },
                 { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
         )
     }
 
+    override val toolbar: Toolbar?
+        get() = binding.toolbar
+
+
     override fun onRefresh() {
-        refreshLayout!!.isRefreshing = false
+        binding.refreshLayout.isRefreshing = false
         presenter!!.reloadLoanBooks(
                 { list: List<LoanBookModel?> -> renderLoanBookList(list) },
                 { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
@@ -83,9 +72,9 @@ class LoanBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListe
 
     private fun renderLoanBookList(list: List<LoanBookModel?>) {
         if (list.isEmpty()) {
-            if (noBooksView != null) noBooksView!!.visibility = View.VISIBLE
+            binding.noBooksFound.visibility = View.VISIBLE
         } else {
-            if (noBooksView != null) noBooksView!!.visibility = View.GONE
+            binding.noBooksFound.visibility = View.GONE
             bookModelList.clear()
             bookModelList.addAll(list)
             adapter!!.notifyDataSetChanged()
@@ -114,11 +103,11 @@ class LoanBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListe
     }
 
     override fun showProgress() {
-        progress!!.visibility = View.VISIBLE
+        binding.progress.root.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        progress!!.visibility = View.GONE
+        binding.progress.root.visibility = View.GONE
     }
 
     override fun showRetry() {}
