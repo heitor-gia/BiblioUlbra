@@ -6,12 +6,10 @@ import com.hgianastasio.biblioulbrav2.data.models.search.searchmodel.SearchModel
 import com.hgianastasio.biblioulbrav2.data.models.search.searchresult.SearchResultEntity
 import com.hgianastasio.biblioulbrav2.data.network.BiblioUlbraApi
 import java.io.IOException
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class SearchBooksOnCloudImpl @Inject constructor(var api: BiblioUlbraApi) : SearchBooksOnCloud {
+class SearchBooksOnCloudImpl constructor(var api: BiblioUlbraApi) : SearchBooksOnCloud {
     @Throws(IOException::class)
     override fun search(searchModelEntity: SearchModelEntity?, onResultListener: OnResultListener<SearchResultEntity>) {
         val entity = api.search(

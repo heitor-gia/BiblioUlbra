@@ -9,12 +9,10 @@ import com.hgianastasio.biblioulbrav2.core.user.models.RenewLoansResponse
 import com.hgianastasio.biblioulbrav2.core.user.models.User
 import com.hgianastasio.biblioulbrav2.core.user.repository.UserRepository
 import java.util.concurrent.ThreadPoolExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-class RenewLoans @Inject constructor(executor: ThreadPoolExecutor, private val repository: UserRepository, private val loanBooksRepository: LoanBooksRepository) : UseCase<RenewLoansResponse, Void?>(executor) {
+class RenewLoans constructor(executor: ThreadPoolExecutor, private val repository: UserRepository, private val loanBooksRepository: LoanBooksRepository) : UseCase<RenewLoansResponse, Void?>(executor) {
     override fun process(unused: Void?, resultListener: OnResultListener<RenewLoansResponse>, errorListener: OnErrorListener) {
         try {
             repository.get { user: User ->

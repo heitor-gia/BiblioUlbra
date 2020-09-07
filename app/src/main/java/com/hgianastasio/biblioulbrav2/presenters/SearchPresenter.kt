@@ -12,12 +12,10 @@ import com.hgianastasio.biblioulbrav2.models.search.searchmodel.SearchModelModel
 import com.hgianastasio.biblioulbrav2.models.search.searchresult.SearchResultModel
 import com.hgianastasio.biblioulbrav2.models.search.searchresult.SearchResultModelMapper
 import com.hgianastasio.biblioulbrav2.system.UseCaseExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchPresenter @Inject constructor(useCaseExecutor: UseCaseExecutor,
+class SearchPresenter constructor(useCaseExecutor: UseCaseExecutor,
                                           var searchBooks: SearchBooks,
                                           var nextPage: SearchBooksNextPage,
                                           var prevPage: SearchBooksPrevPage,

@@ -7,12 +7,10 @@ import com.hgianastasio.biblioulbrav2.core.user.models.RenewLoansResponse
 import com.hgianastasio.biblioulbrav2.models.user.RenewLoansResponseModel
 import com.hgianastasio.biblioulbrav2.models.user.RenewLoansResponseModelMapper
 import com.hgianastasio.biblioulbrav2.system.UseCaseExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 11/05/17.
  */
-class RenewLoansPresenter @Inject constructor(executor: UseCaseExecutor, private val renewLoans: RenewLoans, private val mapper: RenewLoansResponseModelMapper) : BasePresenter(executor) {
+class RenewLoansPresenter constructor(executor: UseCaseExecutor, private val renewLoans: RenewLoans, private val mapper: RenewLoansResponseModelMapper) : BasePresenter(executor) {
     fun renewLoans(onResultListener: OnResultListener<RenewLoansResponseModel>, errorListener: OnErrorListener) {
         if (progressListener != null) progressListener!!.showProgress()
         useCaseExecutor.execute(renewLoans, null,

@@ -8,12 +8,9 @@ import com.hgianastasio.biblioulbrav2.data.models.user.renew.RenewLoansResponseE
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import javax.inject.Singleton
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-@Singleton
 interface BiblioUlbraApi {
     @GET("?funcao=h")
     fun getHistoryFromUser(@Query("cgu") cgu: String?): Call<List<HistoryBookEntity>>

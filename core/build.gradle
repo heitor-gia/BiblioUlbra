@@ -13,8 +13,6 @@ sourceSets {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    provided "javax.annotation:jsr250-api:1.0"
-    compile "javax.inject:javax.inject:1"
 }
 
 

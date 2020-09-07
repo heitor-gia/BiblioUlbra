@@ -7,12 +7,10 @@ import com.hgianastasio.biblioulbrav2.data.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/26/17.
  */
-class DBHelper @Inject constructor(private val mContext: Context) : SQLiteOpenHelper(mContext, DB_NAME, null, DB_VERSION) {
+class DBHelper constructor(private val mContext: Context) : SQLiteOpenHelper(mContext, DB_NAME, null, DB_VERSION) {
     private fun fromRawResource(resourceId: Int): String {
         val inputStream = mContext.resources.openRawResource(resourceId)
         val reader = BufferedReader(InputStreamReader(inputStream))

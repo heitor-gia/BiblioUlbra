@@ -9,12 +9,10 @@ import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCache
 import com.hgianastasio.biblioulbrav2.data.models.loanbooks.LoanBookEntity
 import com.hgianastasio.biblioulbrav2.data.models.loanbooks.LoanBookEntityMapper
 import java.io.IOException
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-class LoanBooksRepositoryImp @Inject constructor(
+class LoanBooksRepositoryImp constructor(
         private val cloud: LoanBooksOnCloud,
         private val cache: LoanBooksOnCache,
         private val mapper: LoanBookEntityMapper,

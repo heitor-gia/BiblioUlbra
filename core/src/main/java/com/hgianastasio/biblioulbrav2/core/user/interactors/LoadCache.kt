@@ -12,14 +12,11 @@ import com.hgianastasio.biblioulbrav2.core.user.repository.UserRepository
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.ThreadPoolExecutor
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Created by heitor_12 on 13/05/17.
  */
-@Singleton
-class LoadCache @Inject constructor(
+class LoadCache constructor(
         executor: ThreadPoolExecutor,
         private val userRepository: UserRepository,
         private val loanBooksRepository: LoanBooksRepository,

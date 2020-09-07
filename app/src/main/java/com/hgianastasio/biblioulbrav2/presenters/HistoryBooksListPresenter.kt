@@ -7,18 +7,15 @@ import com.hgianastasio.biblioulbrav2.core.historybooks.HistoryBook
 import com.hgianastasio.biblioulbrav2.core.historybooks.interactors.GetHistoryBooks
 import com.hgianastasio.biblioulbrav2.core.historybooks.interactors.ReloadHitoryBooks
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LoadCache
-import com.hgianastasio.biblioulbrav2.di.PerActivity
 import com.hgianastasio.biblioulbrav2.models.historybooks.HistoryBookModel
 import com.hgianastasio.biblioulbrav2.models.historybooks.HistoryBookModelMapper
 import com.hgianastasio.biblioulbrav2.system.UseCaseExecutor
 import java.io.IOException
-import javax.inject.Inject
 
 /**
  * Created by heitor_12 on 09/05/17.
  */
-@PerActivity
-class HistoryBooksListPresenter @Inject constructor(
+class HistoryBooksListPresenter constructor(
         executor: UseCaseExecutor,
         var getHistoryBooks: GetHistoryBooks,
         var reloadHitoryBooks: ReloadHitoryBooks,

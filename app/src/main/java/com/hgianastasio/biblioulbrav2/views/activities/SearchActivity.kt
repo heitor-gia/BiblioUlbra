@@ -1,13 +1,14 @@
 package com.hgianastasio.biblioulbrav2.views.activities
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hgianastasio.biblioulbrav2.R
@@ -20,34 +21,29 @@ import com.hgianastasio.biblioulbrav2.models.search.searchbook.SearchBookModel
 import com.hgianastasio.biblioulbrav2.models.search.searchmodel.SearchModelModel
 import com.hgianastasio.biblioulbrav2.models.search.searchresult.SearchResultModel
 import com.hgianastasio.biblioulbrav2.presenters.SearchPresenter
-import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.SearchBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.EndlessRecyclerViewScrollListener
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
 import com.hgianastasio.biblioulbrav2.views.viewBinding
+import org.koin.android.ext.android.inject
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchActivity : BaseActivity(), OnProgressListener {
-    @JvmField
-    @Inject
-    var presenter: SearchPresenter? = null
+class SearchActivity : AppCompatActivity(), OnProgressListener {
+
+    val presenter: SearchPresenter by inject()
     val binding by viewBinding(ActivitySearchBooksBinding::inflate)
     var currentResult: SearchResultModel? = null
     var adapter: SearchBookAdapter? = null
     var modelList: MutableList<SearchBookModel?> = ArrayList(10)
 
-    override fun preBind() {
-        super.preBind()
-        activityComponent.inject(this)
-        setContentView(binding.root)
-    }
 
-    override fun postBind() {
-        super.postBind()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Pesquisa"
         presenter!!.progressListener = this
         initRecyclerView()
@@ -57,8 +53,6 @@ class SearchActivity : BaseActivity(), OnProgressListener {
         binding.btnSearch.setOnClickListener {  doSearch() }
     }
 
-    override val toolbar: Toolbar?
-        get() = binding.toolbar
 
     private fun initRecyclerView() {
         adapter = SearchBookAdapter(modelList, this)

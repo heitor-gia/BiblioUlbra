@@ -6,17 +6,13 @@ import com.hgianastasio.biblioulbrav2.core.user.interactors.GetUser
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LoginUser
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LogoutUser
 import com.hgianastasio.biblioulbrav2.core.user.models.User
-import com.hgianastasio.biblioulbrav2.di.PerActivity
 import com.hgianastasio.biblioulbrav2.models.user.UserModel
 import com.hgianastasio.biblioulbrav2.models.user.UserModelMapper
 import com.hgianastasio.biblioulbrav2.system.UseCaseExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-@PerActivity
-class UserModelPresenter @Inject constructor(
+class UserModelPresenter constructor(
         executor: UseCaseExecutor,
         private val getUser: GetUser,
         private val logoutUser: LogoutUser,

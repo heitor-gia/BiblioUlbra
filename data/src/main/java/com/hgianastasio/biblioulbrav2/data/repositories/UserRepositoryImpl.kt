@@ -17,12 +17,10 @@ import com.hgianastasio.biblioulbrav2.data.models.user.UserEntityMapper
 import com.hgianastasio.biblioulbrav2.data.models.user.renew.RenewLoansResponseEntity
 import com.hgianastasio.biblioulbrav2.data.models.user.renew.RenewLoansResponseEntityMapper
 import java.io.IOException
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/26/17.
  */
-class UserRepositoryImpl @Inject constructor(
+class UserRepositoryImpl constructor(
         private val cache: UserOnCache,
         private val cloud: UserOnCloud,
         private val loanBooksOnCache: LoanBooksOnCache,

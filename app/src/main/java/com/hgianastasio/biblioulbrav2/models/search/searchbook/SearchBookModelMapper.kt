@@ -3,12 +3,10 @@ package com.hgianastasio.biblioulbrav2.models.search.searchbook
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchBook
 import java.text.SimpleDateFormat
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchBookModelMapper @Inject constructor() : Mapper<SearchBook, SearchBookModel>() {
+class SearchBookModelMapper constructor() : Mapper<SearchBook, SearchBookModel>() {
     override fun transform(input: SearchBook): SearchBookModel {
         val output = SearchBookModel()
         output.author = input.author

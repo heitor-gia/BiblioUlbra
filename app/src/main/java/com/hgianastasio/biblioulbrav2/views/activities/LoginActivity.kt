@@ -3,26 +3,22 @@ package com.hgianastasio.biblioulbrav2.views.activities
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import com.hgianastasio.biblioulbrav2.databinding.ActivityLoginBinding
 import com.hgianastasio.biblioulbrav2.models.user.UserModel
 import com.hgianastasio.biblioulbrav2.navigation.Navigator
 import com.hgianastasio.biblioulbrav2.presenters.UserModelPresenter
-import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
 import com.hgianastasio.biblioulbrav2.views.viewBinding
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-class LoginActivity : BaseActivity(), OnProgressListener {
+class LoginActivity : AppCompatActivity(), OnProgressListener {
     val binding by viewBinding(ActivityLoginBinding::inflate)
+    val presenter: UserModelPresenter by inject()
 
-    @kotlin.jvm.JvmField
-    @Inject
-    var presenter: UserModelPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        activityComponent.inject(this)
         presenter!!.getUser({ model: UserModel? -> processUserModelResult(model) }, {  showLoginForm() })
         binding.btnLogin.setOnClickListener { v: View? ->
             if (binding.etCgu.text.toString().isEmpty()) {
@@ -44,8 +40,6 @@ class LoginActivity : BaseActivity(), OnProgressListener {
         presenter?.progressListener = this
     }
 
-    override val toolbar: Toolbar?
-        get() = binding.toolbar
 
     private fun processUserModelResult(model: UserModel?) {
         if (model != null) {

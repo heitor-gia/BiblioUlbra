@@ -4,12 +4,10 @@ import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.historybooks.HistoryBook
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-class HistoryBookEntityMapper @Inject constructor() : Mapper<HistoryBook, HistoryBookEntity>() {
+class HistoryBookEntityMapper constructor() : Mapper<HistoryBook, HistoryBookEntity>() {
     override fun transform(input: HistoryBook): HistoryBookEntity {
         val output = HistoryBookEntity()
         output.title = input!!.title

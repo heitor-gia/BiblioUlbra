@@ -9,12 +9,11 @@ import com.hgianastasio.biblioulbrav2.data.models.user.UserEntity
 import com.hgianastasio.biblioulbrav2.data.models.user.renew.RenewLoansResponseEntity
 import com.hgianastasio.biblioulbrav2.data.network.BiblioUlbraApi
 import java.io.IOException
-import javax.inject.Inject
 
 /**
  * Created by heitorgianastasio on 4/28/17.
  */
-class UserOnCloudImpl @Inject constructor(var api: BiblioUlbraApi) : UserOnCloud {
+class UserOnCloudImpl constructor(var api: BiblioUlbraApi) : UserOnCloud {
     @Throws(FailLoginException::class, ConnectionException::class)
     override fun login(cgu: String?, listener: OnResultListener<UserEntity>) {
         try {

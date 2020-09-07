@@ -7,12 +7,10 @@ import com.hgianastasio.biblioulbrav2.core.loanbooks.LoanBook
 import com.hgianastasio.biblioulbrav2.core.loanbooks.repository.LoanBooksRepository
 import com.hgianastasio.biblioulbrav2.core.user.repository.UserRepository
 import java.util.concurrent.ThreadPoolExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-class GetLoanBooks @Inject constructor(executor: ThreadPoolExecutor, var booksRepository: LoanBooksRepository, var userRepository: UserRepository) : UseCase<List<LoanBook>, Void?>(executor) {
+class GetLoanBooks constructor(executor: ThreadPoolExecutor, var booksRepository: LoanBooksRepository, var userRepository: UserRepository) : UseCase<List<LoanBook>, Void?>(executor) {
     override fun process(unused: Void?, resultListener: OnResultListener<List<LoanBook>>, errorListener: OnErrorListener) {
         try {
             userRepository.get {

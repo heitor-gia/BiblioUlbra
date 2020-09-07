@@ -3,12 +3,10 @@ package com.hgianastasio.biblioulbrav2.data.models.search.searchresult
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchResult
 import com.hgianastasio.biblioulbrav2.data.models.search.searchbook.SearchBookEntityMapper
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class SearchResultEntityMapper @Inject constructor(var entityMapper: SearchBookEntityMapper) : Mapper<SearchResult, SearchResultEntity>() {
+class SearchResultEntityMapper constructor(var entityMapper: SearchBookEntityMapper) : Mapper<SearchResult, SearchResultEntity>() {
     override fun transform(input: SearchResult): SearchResultEntity? {
         return null
     }

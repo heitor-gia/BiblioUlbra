@@ -3,12 +3,10 @@ package com.hgianastasio.biblioulbrav2.models.historybooks
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.historybooks.HistoryBook
 import java.text.SimpleDateFormat
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 03/05/17.
  */
-class HistoryBookModelMapper @Inject constructor() : Mapper<HistoryBook, HistoryBookModel>() {
+class HistoryBookModelMapper constructor() : Mapper<HistoryBook, HistoryBookModel>() {
     override fun transform(input: HistoryBook): HistoryBookModel {
         val output = HistoryBookModel()
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")

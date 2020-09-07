@@ -11,12 +11,11 @@ import com.hgianastasio.biblioulbrav2.data.disk.preferences.BasePreferences
 import com.hgianastasio.biblioulbrav2.data.models.historybooks.HistoryBookEntity
 import java.io.IOException
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Created by heitorgianastasio on 4/29/17.
  */
-class HistoryBooksOnCacheImpl @Inject constructor(private val dbHelper: DBHelper, private val preferences: HistoryBookPreferences) : HistoryBooksOnCache {
+class HistoryBooksOnCacheImpl constructor(private val dbHelper: DBHelper, private val preferences: HistoryBookPreferences) : HistoryBooksOnCache {
     @Throws(IOException::class)
     override fun get(): List<HistoryBookEntity> {
         val db = dbHelper.readableDatabase
@@ -82,7 +81,7 @@ class HistoryBooksOnCacheImpl @Inject constructor(private val dbHelper: DBHelper
         return result
     }
 
-    class HistoryBookPreferences @Inject constructor(mContext: Context) : BasePreferences(mContext) {
+    class HistoryBookPreferences constructor(mContext: Context) : BasePreferences(mContext) {
         fun setUpdateTime(time: Long): Boolean {
             return preferences
                     .edit()

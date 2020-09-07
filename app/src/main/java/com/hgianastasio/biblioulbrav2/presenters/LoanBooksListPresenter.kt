@@ -7,18 +7,15 @@ import com.hgianastasio.biblioulbrav2.core.loanbooks.LoanBook
 import com.hgianastasio.biblioulbrav2.core.loanbooks.interactors.GetLoanBooks
 import com.hgianastasio.biblioulbrav2.core.loanbooks.interactors.ReloadLoanBooks
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LoadCache
-import com.hgianastasio.biblioulbrav2.di.PerActivity
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModelMapper
 import com.hgianastasio.biblioulbrav2.system.UseCaseExecutor
 import java.io.IOException
-import javax.inject.Inject
 
 /**
  * Created by heitor_12 on 09/05/17.
  */
-@PerActivity
-class LoanBooksListPresenter @Inject constructor(
+class LoanBooksListPresenter constructor(
         useCaseExecutor: UseCaseExecutor,
         var getLoanBooks: GetLoanBooks,
         var reloadLoanBooks: ReloadLoanBooks,

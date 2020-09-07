@@ -3,12 +3,10 @@ package com.hgianastasio.biblioulbrav2.data.models.loanbooks
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.loanbooks.LoanBook
 import java.text.SimpleDateFormat
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/29/17.
  */
-class LoanBookEntityMapper @Inject constructor() : Mapper<LoanBook, LoanBookEntity>() {
+class LoanBookEntityMapper constructor() : Mapper<LoanBook, LoanBookEntity>() {
     override fun transform(input: LoanBook): LoanBookEntity {
         val output = LoanBookEntity()
         output.library = input!!.library

@@ -7,12 +7,10 @@ import com.hgianastasio.biblioulbrav2.data.disk.preferences.BasePreferences
 import com.hgianastasio.biblioulbrav2.data.models.user.UserEntity
 import java.io.IOException
 import java.util.*
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/28/17.
  */
-class UserOnCacheImpl @Inject constructor(mContext: Context) : BasePreferences(mContext), UserOnCache {
+class UserOnCacheImpl constructor(mContext: Context) : BasePreferences(mContext), UserOnCache {
     @Throws(IOException::class)
     override fun get(): UserEntity {
         val json = preferences.getString(USER_DATA_PREFERENCE_KEY, "")

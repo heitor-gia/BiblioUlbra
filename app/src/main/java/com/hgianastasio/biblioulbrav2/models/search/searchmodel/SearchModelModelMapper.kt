@@ -6,12 +6,10 @@ import com.hgianastasio.biblioulbrav2.core.search.constants.SearchField
 import com.hgianastasio.biblioulbrav2.core.search.constants.SearchLanguage
 import com.hgianastasio.biblioulbrav2.core.search.constants.SearchMedia
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchModel
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchModelModelMapper @Inject constructor() : Mapper<SearchModel, SearchModelModel>() {
+class SearchModelModelMapper constructor() : Mapper<SearchModel, SearchModelModel>() {
     override fun transform(input: SearchModel): SearchModelModel {
         val output = SearchModelModel()
         output.base = input.base!!.id

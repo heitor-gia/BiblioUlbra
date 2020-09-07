@@ -11,33 +11,22 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hgianastasio.biblioulbrav2.R
 import com.hgianastasio.biblioulbrav2.databinding.FragmentDialogRenewLoansBinding
-import com.hgianastasio.biblioulbrav2.di.components.ActivityComponent
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 import com.hgianastasio.biblioulbrav2.models.user.RenewLoansResponseModel
 import com.hgianastasio.biblioulbrav2.presenters.LoanBooksListPresenter
 import com.hgianastasio.biblioulbrav2.presenters.RenewLoansPresenter
-import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.RenewLoanBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
 import com.hgianastasio.biblioulbrav2.views.viewBinding
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 /**
  * Created by heitor_12 on 11/05/17.
  */
 class RenewLoansDialogFragment : DialogFragment() {
-    @kotlin.jvm.JvmField
-    @Inject
-    var renewPresenter: RenewLoansPresenter? = null
-
-    @kotlin.jvm.JvmField
-    @Inject
-    var booksListPresenter: LoanBooksListPresenter? = null
+    val renewPresenter: RenewLoansPresenter by inject()
+    val booksListPresenter: LoanBooksListPresenter by inject()
     val binding  by viewBinding(FragmentDialogRenewLoansBinding::bind)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        component!!.inject(this)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_dialog_renew_loans, container, true)
@@ -119,6 +108,4 @@ class RenewLoansDialogFragment : DialogFragment() {
         dialog.setTitle("Renovar empréstimos")
     }
 
-    val component: ActivityComponent?
-        get() = (activity as? BaseActivity)?.activityComponent
 }

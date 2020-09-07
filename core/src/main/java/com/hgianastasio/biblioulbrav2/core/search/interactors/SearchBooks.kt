@@ -9,12 +9,10 @@ import com.hgianastasio.biblioulbrav2.core.search.models.SearchModel
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchResult
 import com.hgianastasio.biblioulbrav2.core.search.repository.SearchBookRepository
 import java.util.concurrent.ThreadPoolExecutor
-import javax.inject.Inject
-
 /**
  * Created by heitorgianastasio on 4/25/17.
  */
-class SearchBooks @Inject constructor(executor: ThreadPoolExecutor, var repository: SearchBookRepository) : UseCase<SearchResult, SearchModel?>(executor) {
+class SearchBooks constructor(executor: ThreadPoolExecutor, var repository: SearchBookRepository) : UseCase<SearchResult, SearchModel?>(executor) {
     override fun process(params: SearchModel?, resultListener: OnResultListener<SearchResult>, errorListener: OnErrorListener) {
         try {
             repository.search(params) { result: SearchResult ->

@@ -8,12 +8,10 @@ import com.hgianastasio.biblioulbrav2.data.base.search.SearchBooksOnCloud
 import com.hgianastasio.biblioulbrav2.data.models.search.searchmodel.SearchModelEntityMapper
 import com.hgianastasio.biblioulbrav2.data.models.search.searchresult.SearchResultEntityMapper
 import java.io.IOException
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class SearchBookRepositoryImpl @Inject constructor(
+class SearchBookRepositoryImpl constructor(
         var cloud: SearchBooksOnCloud,
         var resultEntityMapper: SearchResultEntityMapper,
         var modelEntityMapper: SearchModelEntityMapper) : SearchBookRepository {

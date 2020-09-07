@@ -4,12 +4,10 @@ import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchBook
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class SearchBookEntityMapper @Inject constructor() : Mapper<SearchBook, SearchBookEntity>() {
+class SearchBookEntityMapper constructor() : Mapper<SearchBook, SearchBookEntity>() {
     override fun transform(input: SearchBook): SearchBookEntity? {
         throw IllegalStateException("Not implemented")
     }

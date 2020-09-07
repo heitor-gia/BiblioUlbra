@@ -2,12 +2,10 @@ package com.hgianastasio.biblioulbrav2.models.user
 
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.user.models.User
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 03/05/17.
  */
-class UserModelMapper @Inject constructor() : Mapper<User, UserModel>() {
+class UserModelMapper constructor() : Mapper<User, UserModel>() {
     override fun transform(input: User): UserModel {
         val output = UserModel()
         output.name = input.name?.formatName()

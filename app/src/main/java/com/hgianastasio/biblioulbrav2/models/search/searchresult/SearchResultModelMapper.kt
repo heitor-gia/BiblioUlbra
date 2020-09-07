@@ -3,12 +3,10 @@ package com.hgianastasio.biblioulbrav2.models.search.searchresult
 import com.hgianastasio.biblioulbrav2.core.base.boundaries.Mapper
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchResult
 import com.hgianastasio.biblioulbrav2.models.search.searchbook.SearchBookModelMapper
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchResultModelMapper @Inject constructor(private val bookModelMapper: SearchBookModelMapper) : Mapper<SearchResult, SearchResultModel>() {
+class SearchResultModelMapper constructor(private val bookModelMapper: SearchBookModelMapper) : Mapper<SearchResult, SearchResultModel>() {
     override fun transform(input: SearchResult): SearchResultModel {
         val output = SearchResultModel()
         output.cookie = input.cookie

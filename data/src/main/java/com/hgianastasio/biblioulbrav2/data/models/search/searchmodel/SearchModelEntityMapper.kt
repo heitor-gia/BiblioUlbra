@@ -6,12 +6,10 @@ import com.hgianastasio.biblioulbrav2.core.search.constants.SearchField
 import com.hgianastasio.biblioulbrav2.core.search.constants.SearchLanguage
 import com.hgianastasio.biblioulbrav2.core.search.constants.SearchMedia
 import com.hgianastasio.biblioulbrav2.core.search.models.SearchModel
-import javax.inject.Inject
-
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class SearchModelEntityMapper @Inject constructor() : Mapper<SearchModel?, SearchModelEntity?>() {
+class SearchModelEntityMapper constructor() : Mapper<SearchModel?, SearchModelEntity?>() {
     override fun transform(input: SearchModel?): SearchModelEntity {
         val output = SearchModelEntity()
         output.isExact = if (input!!.isExact) "Y" else "N"
