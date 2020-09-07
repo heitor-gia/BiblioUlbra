@@ -4,11 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
-    defaultConfig {/*
-        jackOptions {
-            enabled true
-        }*/
+    buildToolsVersion "30.0.1"
+    defaultConfig {
         vectorDrawables.useSupportLibrary = true
         applicationId "com.hgianastasio.biblioulbrav2"
         minSdkVersion 19
@@ -27,6 +24,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    viewBinding {
+        enabled = true
     }
 }
 

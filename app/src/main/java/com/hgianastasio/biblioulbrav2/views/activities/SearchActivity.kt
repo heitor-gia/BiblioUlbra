@@ -1,7 +1,6 @@
-package com.hgianastasio.biblioulbrav2.views.fragments
+package com.hgianastasio.biblioulbrav2.views.activities
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -25,6 +24,7 @@ import com.hgianastasio.biblioulbrav2.models.search.searchbook.SearchBookModel
 import com.hgianastasio.biblioulbrav2.models.search.searchmodel.SearchModelModel
 import com.hgianastasio.biblioulbrav2.models.search.searchresult.SearchResultModel
 import com.hgianastasio.biblioulbrav2.presenters.SearchPresenter
+import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.SearchBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.EndlessRecyclerViewScrollListener
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
@@ -34,7 +34,7 @@ import javax.inject.Inject
 /**
  * Created by heitor_12 on 31/05/17.
  */
-class SearchFragment : BaseFragment(), OnProgressListener {
+class SearchActivity : BaseActivity(), OnProgressListener {
     @kotlin.jvm.JvmField
     @Inject
     var presenter: SearchPresenter? = null
@@ -93,12 +93,16 @@ class SearchFragment : BaseFragment(), OnProgressListener {
     var currentResult: SearchResultModel? = null
     var adapter: SearchBookAdapter? = null
     var modelList: MutableList<SearchBookModel?> = ArrayList(10)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        component?.inject(this)
+
+    override fun preBind() {
+        super.preBind()
+        activityComponent.inject(this)
+        setContentView(R.layout.activity_search_books)
     }
 
     override fun postBind() {
+        super.postBind()
+        supportActionBar?.title = "Pesquisa"
         presenter!!.progressListener = this
         initRecyclerView()
         setupSpinners()
@@ -106,24 +110,15 @@ class SearchFragment : BaseFragment(), OnProgressListener {
         btnToggleSearch!!.setOnClickListener { v: View? -> toggleSearchLayout() }
         btnSearch!!.setOnClickListener { v: View? -> doSearch() }
     }
-
-    protected override val layoutID: Int
-        protected get() = R.layout.fragment_search_books
-
-    override val fragTag: String
-        get() = "SearchBooks"
-
-    override val title: String
-        get() = "Pesquisa"
-
+    
     private fun initRecyclerView() {
-        adapter = SearchBookAdapter(modelList, context)
+        adapter = SearchBookAdapter(modelList, this)
         adapter!!.setOnItemClickListener (object : SearchBookAdapter.OnItemClickListener{
             override fun onItemClick(searchBookModel: SearchBookModel?) =  createSearchBookDialog(searchBookModel!!)
 
         })
         bookList!!.adapter = adapter
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         bookList!!.layoutManager = layoutManager
         bookList!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -155,7 +150,7 @@ class SearchFragment : BaseFragment(), OnProgressListener {
             searchLayout!!.visibility = View.GONE
             btnToggleSearch!!.show()
         } else {
-            Toast.makeText(context, "Preencha o campo de busca", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Preencha o campo de busca", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -170,12 +165,12 @@ class SearchFragment : BaseFragment(), OnProgressListener {
     }
 
     private fun processError(e: Exception) {
-        Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
         presenter!!.unsetProgressListener()
+        super.onDestroy()
     }
 
     private fun buildSearchModel(): SearchModelModel {
@@ -190,10 +185,10 @@ class SearchFragment : BaseFragment(), OnProgressListener {
     }
 
     private fun setupSpinners() {
-        spLanguage!!.adapter = ArrayAdapter<Any>(context!!, R.layout.spinner_item, SearchLanguage.names.toTypedArray())
-        spMedia!!.adapter = ArrayAdapter<Any>(context!!, R.layout.spinner_item, SearchMedia.names.toTypedArray())
-        spBase!!.adapter = ArrayAdapter<Any>(context!!, R.layout.spinner_item, SearchBase.titles.toTypedArray())
-        spField!!.adapter = ArrayAdapter<Any>(context!!, R.layout.spinner_item, SearchField.names.toTypedArray())
+        spLanguage!!.adapter = ArrayAdapter<Any>(this, R.layout.spinner_item, SearchLanguage.names.toTypedArray())
+        spMedia!!.adapter = ArrayAdapter<Any>(this, R.layout.spinner_item, SearchMedia.names.toTypedArray())
+        spBase!!.adapter = ArrayAdapter<Any>(this, R.layout.spinner_item, SearchBase.titles.toTypedArray())
+        spField!!.adapter = ArrayAdapter<Any>(this, R.layout.spinner_item, SearchField.names.toTypedArray())
     }
 
     private fun toggleSearchLayout() {
@@ -206,7 +201,7 @@ class SearchFragment : BaseFragment(), OnProgressListener {
     }
 
     private fun createSearchBookDialog(model: SearchBookModel) {
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(this)
                 .setTitle("Exemplares")
                 .setMessage(model.catchedExps?.joinToString(separator = "\n"))
                 .setNeutralButton("Ok", null)
@@ -240,9 +235,9 @@ class SearchFragment : BaseFragment(), OnProgressListener {
     override fun showRetry() {}
     override fun hideRetry() {}
     private fun hideKeyboard() {
-        val imm = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         try {
-            imm.hideSoftInputFromWindow(view!!.windowToken, 0)
+            imm.hideSoftInputFromWindow(window.decorView.applicationWindowToken, 0)
         } catch (e: Exception) {
             Log.e("Error", Log.getStackTraceString(e))
         }

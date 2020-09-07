@@ -21,7 +21,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.activities.MainActivity"
+            android:name=".views.activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.LoanBooksListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.HistoryBooksListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.activities.SettingsActivity"

@@ -10,6 +10,9 @@
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/app/app.iml" />
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/core/core.iml" />
       <module fileurl="file:///media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/data/data.iml" filepath="/media/heitor_12/29C166E740A5B415/MyProjects/BiblioUlbraV2/data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/history/history.iml" filepath="$PROJECT_DIR$/.idea/modules/history/history.iml" group="BiblioUlbra/history" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rents/rents.iml" filepath="$PROJECT_DIR$/.idea/modules/rents/rents.iml" group="BiblioUlbra/rents" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/search/search.iml" filepath="$PROJECT_DIR$/.idea/modules/search/search.iml" group="BiblioUlbra/search" />
     </modules>
   </component>
 </project>

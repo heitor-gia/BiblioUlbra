@@ -3,19 +3,16 @@ package com.hgianastasio.biblioulbrav2.di.modules
 import com.hgianastasio.biblioulbrav2.core.historybooks.repository.HistoryBooksRepository
 import com.hgianastasio.biblioulbrav2.core.loanbooks.repository.LoanBooksRepository
 import com.hgianastasio.biblioulbrav2.core.search.repository.SearchBookRepository
-import com.hgianastasio.biblioulbrav2.core.settings.repository.SettingRepository
 import com.hgianastasio.biblioulbrav2.core.user.repository.UserRepository
 import com.hgianastasio.biblioulbrav2.data.base.historybooks.HistoryBooksOnCache
 import com.hgianastasio.biblioulbrav2.data.base.historybooks.HistoryBooksOnCloud
 import com.hgianastasio.biblioulbrav2.data.base.loanbooks.LoanBooksOnCache
 import com.hgianastasio.biblioulbrav2.data.base.loanbooks.LoanBooksOnCloud
 import com.hgianastasio.biblioulbrav2.data.base.search.SearchBooksOnCloud
-import com.hgianastasio.biblioulbrav2.data.base.setting.SettingOnDisk
 import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCache
 import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCloud
 import com.hgianastasio.biblioulbrav2.data.disk.HistoryBooksOnCacheImpl
 import com.hgianastasio.biblioulbrav2.data.disk.LoanBooksOnCacheImpl
-import com.hgianastasio.biblioulbrav2.data.disk.SettingOnDiskImpl
 import com.hgianastasio.biblioulbrav2.data.disk.UserOnCacheImpl
 import com.hgianastasio.biblioulbrav2.data.network.cloud.HistoryBooksOnCloudImpl
 import com.hgianastasio.biblioulbrav2.data.network.cloud.LoanBooksOnCloudImpl
@@ -24,7 +21,6 @@ import com.hgianastasio.biblioulbrav2.data.network.cloud.UserOnCloudImpl
 import com.hgianastasio.biblioulbrav2.data.repositories.HistoryBooksRepositoryImp
 import com.hgianastasio.biblioulbrav2.data.repositories.LoanBooksRepositoryImp
 import com.hgianastasio.biblioulbrav2.data.repositories.SearchBookRepositoryImpl
-import com.hgianastasio.biblioulbrav2.data.repositories.SettingRepositoryImpl
 import com.hgianastasio.biblioulbrav2.data.repositories.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -98,18 +94,6 @@ class DataModule {
     @Provides
     @Singleton
     fun provideSearchRepository(repository: SearchBookRepositoryImpl): SearchBookRepository {
-        return repository
-    }
-
-    @Provides
-    @Singleton
-    fun provideSettingRepository(repository: SettingRepositoryImpl): SettingRepository {
-        return repository
-    }
-
-    @Provides
-    @Singleton
-    fun provideSettingOnDisk(repository: SettingOnDiskImpl): SettingOnDisk {
         return repository
     }
 }

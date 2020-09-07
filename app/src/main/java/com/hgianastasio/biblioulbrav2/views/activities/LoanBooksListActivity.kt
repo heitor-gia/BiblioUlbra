@@ -1,6 +1,5 @@
-package com.hgianastasio.biblioulbrav2.views.fragments
+package com.hgianastasio.biblioulbrav2.views.activities
 
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -12,6 +11,7 @@ import butterknife.BindView
 import com.hgianastasio.biblioulbrav2.R
 import com.hgianastasio.biblioulbrav2.models.loanbooks.LoanBookModel
 import com.hgianastasio.biblioulbrav2.presenters.LoanBooksListPresenter
+import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.LoanBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
 import java.util.*
@@ -20,7 +20,7 @@ import javax.inject.Inject
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class LoanBooksListFragment : BaseFragment(), OnRefreshListener, OnProgressListener {
+class LoanBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListener {
     @kotlin.jvm.JvmField
     @BindView(R.id.progress)
     var progress: View? = null
@@ -42,47 +42,43 @@ class LoanBooksListFragment : BaseFragment(), OnRefreshListener, OnProgressListe
     @kotlin.jvm.JvmField
     @Inject
     var presenter: LoanBooksListPresenter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        component?.inject(this)
+
+
+    override fun preBind() {
+        super.preBind()
+        activityComponent.inject(this)
+        setContentView(R.layout.activity_simple_books)
     }
 
     override fun postBind() {
+        super.postBind()
         presenter!!.progressListener = this
+        supportActionBar?.title = "Livros Alugados"
         refreshLayout!!.setOnRefreshListener(this)
-        rvLoanBooks!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapter = LoanBookAdapter(bookModelList, context)
+        rvLoanBooks!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapter = LoanBookAdapter(bookModelList, this)
         adapter!!.setOnItemClickListener(object : LoanBookAdapter.OnItemClickListener {
             override fun onItemClick(loanBookModel: LoanBookModel?) = createLoanBookDialog(loanBookModel!!)
         })
         rvLoanBooks!!.adapter = adapter
         presenter!!.getLoanBooks(
                 { list: List<LoanBookModel?> -> renderLoanBookList(list) },
-                { e: Exception -> Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show() }
+                { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
         )
     }
-
-    protected override val layoutID: Int
-        protected get() = R.layout.fragment_simple_books
-
-    override val fragTag: String
-        get() = "LoanBooks"
-
-    override val title: String
-        get() = "Empréstimos"
 
     override fun onRefresh() {
         refreshLayout!!.isRefreshing = false
         presenter!!.reloadLoanBooks(
                 { list: List<LoanBookModel?> -> renderLoanBookList(list) },
-                { e: Exception -> Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show() }
+                { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
         )
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         presenter!!.unsetProgressListener()
         presenter!!.destroy()
-        super.onDestroyView()
+        super.onDestroy()
     }
 
     private fun renderLoanBookList(list: List<LoanBookModel?>) {
@@ -97,7 +93,7 @@ class LoanBooksListFragment : BaseFragment(), OnRefreshListener, OnProgressListe
     }
 
     private fun createLoanBookDialog(model: LoanBookModel) {
-        AlertDialog.Builder(context!!)
+        AlertDialog.Builder(this)
                 .setTitle(model.title)
                 .setMessage(String.format(
                         """

@@ -2,13 +2,12 @@ package com.hgianastasio.biblioulbrav2.di.components
 
 import com.hgianastasio.biblioulbrav2.di.PerActivity
 import com.hgianastasio.biblioulbrav2.di.modules.ActivityModule
+import com.hgianastasio.biblioulbrav2.views.activities.HistoryBooksListActivity
+import com.hgianastasio.biblioulbrav2.views.activities.HomeActivity
+import com.hgianastasio.biblioulbrav2.views.activities.LoanBooksListActivity
 import com.hgianastasio.biblioulbrav2.views.activities.LoginActivity
-import com.hgianastasio.biblioulbrav2.views.activities.MainActivity
-import com.hgianastasio.biblioulbrav2.views.fragments.HistoryBooksListFragment
-import com.hgianastasio.biblioulbrav2.views.fragments.HomeFragment
-import com.hgianastasio.biblioulbrav2.views.fragments.LoanBooksListFragment
+import com.hgianastasio.biblioulbrav2.views.activities.SearchActivity
 import com.hgianastasio.biblioulbrav2.views.fragments.RenewLoansDialogFragment
-import com.hgianastasio.biblioulbrav2.views.fragments.SearchFragment
 import dagger.Component
 
 /**
@@ -18,10 +17,9 @@ import dagger.Component
 @Component(modules = [ActivityModule::class], dependencies = [ApplicationComponent::class])
 interface ActivityComponent {
     fun inject(activity: LoginActivity?)
-    fun inject(activity: MainActivity?)
-    fun inject(fragment: HistoryBooksListFragment?)
-    fun inject(fragment: LoanBooksListFragment?)
-    fun inject(fragment: HomeFragment?)
+    fun inject(activity: HistoryBooksListActivity?)
+    fun inject(activity: LoanBooksListActivity?)
+    fun inject(activity: HomeActivity?)
     fun inject(fragment: RenewLoansDialogFragment?)
-    fun inject(fragment: SearchFragment?)
+    fun inject(activity: SearchActivity?)
 }

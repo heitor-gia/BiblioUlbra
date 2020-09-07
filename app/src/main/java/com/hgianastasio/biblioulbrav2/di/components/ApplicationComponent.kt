@@ -8,10 +8,6 @@ import com.hgianastasio.biblioulbrav2.core.loanbooks.interactors.ReloadLoanBooks
 import com.hgianastasio.biblioulbrav2.core.search.interactors.SearchBooks
 import com.hgianastasio.biblioulbrav2.core.search.interactors.SearchBooksNextPage
 import com.hgianastasio.biblioulbrav2.core.search.interactors.SearchBooksPrevPage
-import com.hgianastasio.biblioulbrav2.core.settings.interactors.GetAllSettings
-import com.hgianastasio.biblioulbrav2.core.settings.interactors.GetSetting
-import com.hgianastasio.biblioulbrav2.core.settings.interactors.SetSetting
-import com.hgianastasio.biblioulbrav2.core.settings.interactors.SetSettingToDefault
 import com.hgianastasio.biblioulbrav2.core.user.interactors.GetUser
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LoadCache
 import com.hgianastasio.biblioulbrav2.core.user.interactors.LoginUser
@@ -20,7 +16,6 @@ import com.hgianastasio.biblioulbrav2.core.user.interactors.RenewLoans
 import com.hgianastasio.biblioulbrav2.di.modules.ApplicationModule
 import com.hgianastasio.biblioulbrav2.di.modules.DataModule
 import com.hgianastasio.biblioulbrav2.di.modules.RetrofitModule
-import com.hgianastasio.biblioulbrav2.system.SettingsManager
 import dagger.Component
 import javax.inject.Singleton
 
@@ -30,8 +25,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [ApplicationModule::class, RetrofitModule::class, DataModule::class])
 interface ApplicationComponent {
-    fun inject(manager: SettingsManager?)
-
     //Application Context
     fun context(): Context
 
@@ -48,8 +41,4 @@ interface ApplicationComponent {
     fun searchBooks(): SearchBooks
     fun searchBooksNP(): SearchBooksNextPage
     fun searchBooksPP(): SearchBooksPrevPage
-    val setting: GetSetting
-    fun setSetting(): SetSetting
-    fun setSettingToDefault(): SetSettingToDefault
-    val allSettings: GetAllSettings
 }

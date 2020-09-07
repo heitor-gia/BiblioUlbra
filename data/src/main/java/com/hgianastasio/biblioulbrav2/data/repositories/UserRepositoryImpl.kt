@@ -9,7 +9,6 @@ import com.hgianastasio.biblioulbrav2.core.user.models.User
 import com.hgianastasio.biblioulbrav2.core.user.repository.UserRepository
 import com.hgianastasio.biblioulbrav2.data.base.historybooks.HistoryBooksOnCache
 import com.hgianastasio.biblioulbrav2.data.base.loanbooks.LoanBooksOnCache
-import com.hgianastasio.biblioulbrav2.data.base.setting.SettingOnDisk
 import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCache
 import com.hgianastasio.biblioulbrav2.data.base.user.UserOnCloud
 import com.hgianastasio.biblioulbrav2.data.exceptions.UserNotCachedException
@@ -29,8 +28,7 @@ class UserRepositoryImpl @Inject constructor(
         private val loanBooksOnCache: LoanBooksOnCache,
         private val historyBooksOnCache: HistoryBooksOnCache,
         private val userMapper: UserEntityMapper,
-        private val renewMapper: RenewLoansResponseEntityMapper,
-        private val settingOnDisk: SettingOnDisk) : UserRepository {
+        private val renewMapper: RenewLoansResponseEntityMapper) : UserRepository {
     @Throws(FailLoginException::class, ConnectionException::class)
     override fun login(cgu: String?, onResultListener: OnResultListener<User>) {
         cloud.login(cgu) { u: UserEntity ->
@@ -43,7 +41,6 @@ class UserRepositoryImpl @Inject constructor(
         cache.clearCache()
         loanBooksOnCache.clearCache()
         historyBooksOnCache.clearCache()
-        settingOnDisk.clear()
     }
 
     @Throws(IOException::class)

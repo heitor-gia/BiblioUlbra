@@ -69,7 +69,7 @@ class LoanBooksListPresenter @Inject constructor(
 
     override fun destroy() {
         super.destroy()
-        loadCache.removeLoanBooksResultListeners(loadCacheListener!!)
+        loadCacheListener?.let { loadCache.removeLoanBooksResultListeners(it) }
     }
 
 }

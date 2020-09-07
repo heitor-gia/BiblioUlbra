@@ -43,11 +43,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <include
+                layout="@layout/activity_home"
                 android:id="@+id/mainContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" />
+                android:layout_height="match_parent"/>
 
             <RelativeLayout
                 android:id="@+id/progress"

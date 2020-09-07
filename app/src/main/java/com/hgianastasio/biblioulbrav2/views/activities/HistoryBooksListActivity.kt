@@ -1,6 +1,5 @@
-package com.hgianastasio.biblioulbrav2.views.fragments
+package com.hgianastasio.biblioulbrav2.views.activities
 
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +10,7 @@ import butterknife.BindView
 import com.hgianastasio.biblioulbrav2.R
 import com.hgianastasio.biblioulbrav2.models.historybooks.HistoryBookModel
 import com.hgianastasio.biblioulbrav2.presenters.HistoryBooksListPresenter
+import com.hgianastasio.biblioulbrav2.views.activities.base.BaseActivity
 import com.hgianastasio.biblioulbrav2.views.adapters.HistoryBookAdapter
 import com.hgianastasio.biblioulbrav2.views.listeners.OnProgressListener
 import java.util.*
@@ -19,7 +19,7 @@ import javax.inject.Inject
 /**
  * Created by heitor_12 on 09/05/17.
  */
-class HistoryBooksListFragment : BaseFragment(), OnRefreshListener, OnProgressListener {
+class HistoryBooksListActivity : BaseActivity(), OnRefreshListener, OnProgressListener {
     @kotlin.jvm.JvmField
     @BindView(R.id.progress)
     var progress: View? = null
@@ -41,44 +41,39 @@ class HistoryBooksListFragment : BaseFragment(), OnRefreshListener, OnProgressLi
     @kotlin.jvm.JvmField
     @Inject
     var presenter: HistoryBooksListPresenter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        component?.inject(this)
+
+    override fun preBind() {
+        super.preBind()
+        activityComponent.inject(this)
+        setContentView(R.layout.activity_simple_books)
     }
 
     override fun postBind() {
+        super.postBind()
         presenter!!.progressListener = (this)
+        supportActionBar?.title = "Histórico"
         refreshLayout!!.setOnRefreshListener(this)
-        rvHistoryBooks!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapter = HistoryBookAdapter(bookModelList, context)
+        rvHistoryBooks!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapter = HistoryBookAdapter(bookModelList, this)
         rvHistoryBooks!!.adapter = adapter
         presenter!!.getHistoryBooks(
                 { list: List<HistoryBookModel?> -> renderHistoryBookList(list) },
-                { e: Exception -> Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show() }
+                { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
         )
     }
-
-    protected override val layoutID: Int
-        protected get() = R.layout.fragment_simple_books
-
-    override val fragTag: String
-        get() = "HistoryBooks"
-
-    override val title: String
-        get() = "Histórico"
 
     override fun onRefresh() {
         refreshLayout!!.isRefreshing = false
         presenter!!.reloadHistoryBooks(
                 { list: List<HistoryBookModel?> -> renderHistoryBookList(list) },
-                { e: Exception -> Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show() }
+                { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
         )
     }
 
-    override fun onDestroyView() {
+    override fun onDestroy() {
         presenter!!.unsetProgressListener()
         presenter!!.destroy()
-        super.onDestroyView()
+        super.onDestroy()
     }
 
     private fun renderHistoryBookList(list: List<HistoryBookModel?>) {

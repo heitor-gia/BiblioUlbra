@@ -46,7 +46,7 @@ class LoginActivity : BaseActivity(), OnProgressListener {
             }
             presenter!!.login(etCgu!!.text.toString(),
                     {
-                        Navigator.toMainActivity(this)
+                        Navigator.toHomeActivity(this)
                         finish()
                     },
                     { e: Exception -> Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show() }
@@ -66,7 +66,7 @@ class LoginActivity : BaseActivity(), OnProgressListener {
 
     private fun processUserModelResult(model: UserModel?) {
         if (model != null) {
-            Navigator.toMainActivity(this)
+            Navigator.toHomeActivity(this)
             finish()
         } else {
             showLoginForm()

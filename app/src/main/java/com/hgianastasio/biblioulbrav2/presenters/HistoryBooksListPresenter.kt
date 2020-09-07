@@ -72,7 +72,7 @@ class HistoryBooksListPresenter @Inject constructor(
 
     override fun destroy() {
         super.destroy()
-        loadCache.removeHistoryBooksResultListener(loadCacheListener!!)
+        loadCacheListener?.let { loadCache.removeHistoryBooksResultListener(it) }
     }
 
 }
